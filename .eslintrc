@@ -1,0 +1,18 @@
+{
+    // ...
+    "env": {
+      // ...
+      "mocha": true, // for test files
+      "truffle/globals": true, // same as "truffle/truffle": true
+      "es6": true
+    },
+    "plugins": [
+      // ...
+      "truffle"
+      // ...
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2017
+    }
+    
+  }

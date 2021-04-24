@@ -13,7 +13,8 @@ If you are using Visual Studio Code with the Solidity Extension you will need to
 
 Install:
 `npm install`
-If you are using Visual Studio Code 
+ 
+If you are using windows and run into the issue that the openzepplin imports are not importing please open the project using wsl2 and try again
 
 Run:
 
