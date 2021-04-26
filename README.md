@@ -13,10 +13,11 @@ https://github.com/dappuniversity/starter_kit
 Prerequisites
 ---
 
-+ NPM: https://www.npmjs.com/get-npm
++ [npm](https://www.npmjs.com/get-npm) 
 + Truffle:
 `npm install truffle -g`
-+ Ganache: https://www.trufflesuite.com/ganache
++ [Ganache](https://www.trufflesuite.com/ganache)
++ [MetaMask Browser Extension](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn) or any other wallet capable of connecting to a local ethereum network
 
 <b>Hint</b>: If you are using Visual Studio Code with the Solidity Extension you will need to adjust some settings: https://github.com/juanfranblanco/vscode-solidity#openzeppelin)
 
@@ -30,9 +31,18 @@ If you are using windows and run into the issue that the openzepplin imports are
 Run
 ---
 
-First you need to start Ganache and leave it running in the background
+First you need to start Ganache and copy a private key and import it into MetaMask. Keep Ganache running in the background.
+You will need to configure the local blockchain created by Ganache into MetaMask. 
 
-To deploy the smart contract: `truffle migrate`
+Deploy the smart contract: `truffle migrate`
+
+Run the frontend: `npm run start` 
+
+You should get prompted by MetaMask to connect a Wallet to this application.
+After connecting your wallet you can enter a new Color Hexcode into the field and hit "MINT". You should get prompted by MetaMask to confirm the transaction
+
+Additional Commands:
+---
 
 To run the tests: `truffle test`
 
@@ -40,8 +50,14 @@ To overwrite the current deployed contract after a change: `truffle migrate --re
 
 To run the frontend: `npm run start` 
 
+Potential extensions:
+---
++ Only the deployer of the contract can mint new tokens
++ Deployer can assign new minters
++ Frontend shows your own tokens in one section and tokens owned by other people in a different section to emphasize ownership
 
 Interesting links:
+---
 * ERC721 interface: http://erc721.org/
 * OpenZepplin library: https://github.com/OpenZeppelin/openzeppelin-contracts
 * Truffle suite: https://www.trufflesuite.com/
