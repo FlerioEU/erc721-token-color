@@ -30,12 +30,19 @@ If you are using windows and run into the issue that the openzepplin imports are
 Run
 ---
 
+First you need to start Ganache and leave it running in the background
+
 To deploy the smart contract: `truffle migrate`
 
-To run the frontend: `npm run dev` 
+To run the tests: `truffle test`
+
+To overwrite the current deployed contract after a change: `truffle migrate --reset`
+
+To run the frontend: `npm run start` 
 
 
 Interesting links:
 * ERC721 interface: http://erc721.org/
 * OpenZepplin library: https://github.com/OpenZeppelin/openzeppelin-contracts
 * Truffle suite: https://www.trufflesuite.com/
+* Deploying on a test network: https://forum.openzeppelin.com/t/connecting-to-public-test-networks-with-truffle/2960
