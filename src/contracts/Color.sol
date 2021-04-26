@@ -22,7 +22,6 @@ contract Color is ERC721Enumerable {
         uint _id = colors.length;
         _mint(msg.sender, _id);
 
-        // can i use the colors array to check if the color already exists and should not be minted?
         _colorExists[_color] = true;
     }
 
