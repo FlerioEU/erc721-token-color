@@ -28,7 +28,7 @@ contract Color is ERC721Enumerable {
 
    function isHexCode(string memory _str) private pure returns (bool){
         bytes memory b = bytes(_str);
-        if (b.length > 7) {
+        if (b.length != 7) {
             return false;
         }
 
