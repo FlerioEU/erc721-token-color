@@ -48,8 +48,6 @@ To run the tests: `truffle test`
 
 To overwrite the current deployed contract after a change: `truffle migrate --reset`
 
-To run the frontend: `npm run start` 
-
 Potential extensions:
 ---
 + Only the deployer of the contract can mint new tokens
