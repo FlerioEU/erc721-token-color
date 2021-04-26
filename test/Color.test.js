@@ -49,6 +49,17 @@ contract("Color", (accounts) => {
             await contract.mint("#FFFFFF").should.be.fulfilled;
             await contract.mint("#FFFFFF").should.be.rejected;
         });
+
+        it("only creates valid tokens", async () => {
+            await contract.mint("Kappa123").should.be.rejected;
+            await contract.mint("FF#1231").should.be.rejected;
+            await contract.mint("#ffffff").should.be.rejected;
+            await contract.mint("#01f").should.be.rejected;
+            await contract.mint("").should.be.rejected;
+            await contract.mint(null).should.be.rejected;
+            await contract.mint(undefined).should.be.rejected;
+            await contract.mint(10).should.be.rejected;
+        });
     });
 
     describe("indexing", async() => {
