@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
 contract Color is ERC721Enumerable {
@@ -9,27 +8,31 @@ contract Color is ERC721Enumerable {
     address public owner;
 
     mapping(string => bool) _colorExists;
+    mapping(address => bool) public minter;
 
     constructor() ERC721("Color", "COLOR") {
         owner = msg.sender;
+        minter[owner] = true;
     }
 
-    // we would like to restrict the minter to one or more persons
     function mint(string memory _color) public {
-        require(msg.sender == owner);
-        // check if unique
-        require(!_colorExists[_color]);
-        // check if hexcode
-        require(isHexCode(_color));
+        require(minter[msg.sender], "Only dedicated minter can mint new tokens!");
+        require(!_colorExists[_color], "This color already exists!");
+        require(_isHexCode(_color), "This is not a valid Hexcode. Uppercase only!");
 
         colors.push(_color);
         uint _id = colors.length;
-        _mint(msg.sender, _id);
+        _safeMint(msg.sender, _id);
 
         _colorExists[_color] = true;
     }
 
-   function isHexCode(string memory _str) private pure returns (bool){
+    function addMinter(address _to) public {
+        require(msg.sender == owner, "Only owner can assign new minters!");
+        minter[_to] = true;
+    }
+
+   function _isHexCode(string memory _str) private pure returns (bool){
         bytes memory b = bytes(_str);
         if (b.length != 7) {
             return false;

@@ -11,6 +11,7 @@ contract("Color", (accounts) => {
 
     let owner = accounts[0];
     let nonOwner = accounts[1];
+    let minter = accounts[2];
 
     before(async() => {
         contract = await Color.deployed();
@@ -33,6 +34,17 @@ contract("Color", (accounts) => {
         it("has a symbol", async() => {
             const symbol = await contract.symbol();
             assert.equal(symbol, "COLOR");
+        });
+    });
+
+    describe("security", async() => {
+        it("non owner cannot create new tokens", async () => {
+            await contract.mint("#FFFFF2", {from : nonOwner}).should.be.rejected;
+        });
+
+        it("minter can create new tokens", async() => {
+            await contract.addMinter(minter).should.be.fulfilled;
+            await contract.mint("#FFFFF3", {from: minter}).should.be.fulfilled;
         });
     });
 
@@ -63,10 +75,6 @@ contract("Color", (accounts) => {
             await contract.mint(undefined).should.be.rejected;
             await contract.mint(10).should.be.rejected;
         });
-        
-        it("non owner cannot create new tokens", async () => {
-            await contract.mint("#FFFFF2", {from : nonOwner}).should.be.rejected;
-        });
     });
 
     describe("indexing", async() => {
@@ -86,7 +94,7 @@ contract("Color", (accounts) => {
                 result.push(color);
             }
 
-            const expected = ["#5386E4", "#EC058E","#FFFFFF", "#FFFFF1", "#000000"]
+            const expected = ["#5386E4", "#EC058E","#FFFFFF", "#FFFFF1", "#000000", "#FFFFF3"]
 
             result.sort();
             expected.sort();

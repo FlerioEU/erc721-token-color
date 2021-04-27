@@ -50,8 +50,9 @@ To overwrite the current deployed contract after a change: `truffle migrate --re
 
 Potential extensions:
 ---
-+ Only the deployer of the contract can mint new tokens
-+ Deployer can assign new minters
++ Owner of token can transfer or burn it
++ Minter can create new tokens for other people
++ Token owner can create offer or receive offer for their token
 + Frontend shows your own tokens in one section and tokens owned by other people in a different section to emphasize ownership
 
 Interesting links:
