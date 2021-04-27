@@ -32,6 +32,10 @@ contract Color is ERC721Enumerable {
         minter[_to] = true;
     }
 
+    function transfer(address from, address to, uint256 tokenId) public {
+        _transfer(from, to, tokenId);
+    }
+
    function _isHexCode(string memory _str) private pure returns (bool){
         bytes memory b = bytes(_str);
         if (b.length != 7) {

@@ -12,6 +12,7 @@ contract("Color", (accounts) => {
     let owner = accounts[0];
     let nonOwner = accounts[1];
     let minter = accounts[2];
+    let to = accounts[3];
 
     before(async() => {
         contract = await Color.deployed();
@@ -54,8 +55,8 @@ contract("Color", (accounts) => {
             const totalSupply = await contract.totalSupply();
             const event = result.logs[0].args;
 
-            assert.equal(totalSupply, 1);
-            assert.equal(event.tokenId.toNumber(), 1, "id is wrong");
+            assert.equal(totalSupply, 2);
+            assert.equal(event.tokenId.toNumber(), 2, "id is wrong");
             assert.equal(event.from, 0x0000000000000000000000000000000000000000, "from is wrong");
             assert.equal(event.to, accounts[0], "to is wrong");
         });
@@ -100,6 +101,21 @@ contract("Color", (accounts) => {
             expected.sort();
             
             assert.equal(result.join(","), expected.join(","));
+        });
+    });
+
+    describe("transfer", async() => {
+        it("minter transfers newly minted token", async() => {
+            const mint = await contract.mint("#555555", {from: minter});
+            const event1 = mint.logs[0].args;
+            const tokenId = event1.tokenId.toNumber();
+
+            const transfer = await contract.transfer(minter, to, tokenId);
+            const event2 = transfer.logs[1].args;
+
+            assert.equal(event2.tokenId.toNumber(), tokenId, "wrong token transfered");
+            assert.equal(event2.from, minter, "from is wrong");
+            assert.equal(event2.to, to, "to is wrong");
         });
     });
 });
