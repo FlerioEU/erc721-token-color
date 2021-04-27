@@ -9,6 +9,9 @@ require("chai")
 contract("Color", (accounts) => {
     let contract;
 
+    let owner = accounts[0];
+    let nonOwner = accounts[1];
+
     before(async() => {
         contract = await Color.deployed();
     });
@@ -59,6 +62,10 @@ contract("Color", (accounts) => {
             await contract.mint(null).should.be.rejected;
             await contract.mint(undefined).should.be.rejected;
             await contract.mint(10).should.be.rejected;
+        });
+        
+        it("non owner cannot create new tokens", async () => {
+            await contract.mint("#FFFFF2", {from : nonOwner}).should.be.rejected;
         });
     });
 

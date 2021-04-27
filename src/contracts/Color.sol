@@ -6,13 +6,17 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
 contract Color is ERC721Enumerable {
     string[] public colors;
+    address public owner;
+
     mapping(string => bool) _colorExists;
 
     constructor() ERC721("Color", "COLOR") {
+        owner = msg.sender;
     }
 
     // we would like to restrict the minter to one or more persons
     function mint(string memory _color) public {
+        require(msg.sender == owner);
         // check if unique
         require(!_colorExists[_color]);
         // check if hexcode
