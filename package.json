@@ -1,40 +1,61 @@
 {
   "name": "color-nft",
   "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
   "dependencies": {
     "@openzeppelin/contracts": "^4.0.0",
+    "@truffle/hdwallet-provider": "^1.5.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "babel-register": "^6.26.0",
-    "bootstrap": "^4.6.0",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
     "chai-bignumber": "^3.0.0",
-    "eslint": "7.25.0",
-    "eslint-plugin-truffle": "^0.3.1",
-    "react": "^17.0.2",
-    "react-bootstrap": "^1.5.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "^4.0.3",
+    "core-js": "^3.6.5",
     "truffle": "^5.3.3",
+    "vue": "^2.6.11",
+    "vuetify": "^2.4.0",
     "web3": "^1.3.5"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.5.0",
+    "@vue/cli-plugin-eslint": "^4.5.0",
+    "@vue/cli-service": "^4.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "eslint-plugin-truffle": "^0.3.1",
+    "sass": "~1.32.0",
+    "sass-loader": "^10.0.0",
+    "vue-cli-plugin-vuetify": "^2.4.2",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.7.0"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
   },
   "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
+    "> 1%",
+    "last 2 versions",
+    "not dead"
   ]
 }

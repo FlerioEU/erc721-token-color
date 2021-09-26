@@ -8,15 +8,15 @@ contract Color is ERC721Enumerable {
     address public owner;
 
     mapping(string => bool) _colorExists;
-    mapping(address => bool) public minter;
+    // mapping(address => bool) public minter;
 
     constructor() ERC721("Color", "COLOR") {
         owner = msg.sender;
-        minter[owner] = true;
+        // minter[owner] = true;
     }
 
     function mint(string memory _color) public {
-        require(minter[msg.sender], "Only dedicated minter can mint new tokens!");
+        // require(minter[msg.sender], "Only dedicated minter can mint new tokens!");
         require(!_colorExists[_color], "This color already exists!");
         require(_isHexCode(_color), "This is not a valid Hexcode. Uppercase only!");
 
@@ -27,10 +27,10 @@ contract Color is ERC721Enumerable {
         _colorExists[_color] = true;
     }
 
-    function addMinter(address _to) public {
-        require(msg.sender == owner, "Only owner can assign new minters!");
-        minter[_to] = true;
-    }
+    // function addMinter(address _to) public {
+    //     require(msg.sender == owner, "Only owner can assign new minters!");
+    //     minter[_to] = true;
+    // }
 
     function transfer(address from, address to, uint256 tokenId) public {
         _transfer(from, to, tokenId);
